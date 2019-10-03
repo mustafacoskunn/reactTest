@@ -3,9 +3,13 @@ import {ListGroup,ListGroupItem} from "reactstrap";
 
 export default class CategoryList extends Component {
   render() {
+    /*constructor(props){
+      super(props);
+      state:{}
+    }*/ //olmasada oluyor
     return (
       <div>
-        <h3>CategoryList Component</h3>
+        <h3>{this.props.title}</h3>
         <ListGroup>
           <ListGroupItem>Cras justo odio</ListGroupItem>
           <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>

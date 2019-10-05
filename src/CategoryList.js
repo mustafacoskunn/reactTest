@@ -12,11 +12,20 @@ export default class CategoryList extends Component {
     };
   }*/ //olmasada oluyor props=compotentler arası data taşıma //state:kendi componentin datası
   state = {
-    categories: [
-      { categoriId: 1, categoryName: "Bavengers" },
-      { categoriId: 2, categoryName: "Condimetals" }
-    ]  };
- 
+    categories: []
+  };
+
+  componentDidMount() {
+    //komponentler yerleşti simdi ne olsun tarzı
+
+    this.getCategories();
+  }
+  getCategories = () => {
+    fetch("http://localhost:3000/categories")
+      .then(response => response.json())
+      .then(data => this.setState({ categories: data }));
+  };
+
   render() {
     return (
       <div>
@@ -25,7 +34,7 @@ export default class CategoryList extends Component {
           {this.state.categories.map(category => (
             <ListGroupItem
               onClick={() => this.props.changeCategory(category)}
-              key={category.categoriId}
+              key={category.id}
             >
               {category.categoryName}
             </ListGroupItem>

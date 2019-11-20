@@ -27,10 +27,15 @@ export default class App extends Component {
     this.getProducts();
   }
   addToCart = (products) => {
-    let newCart=this.state.cart;
+    let newCart = this.state.cart;
+    var addedItem = newCart.find(c => c.products.id === products.id);
+    if (addedItem) {
+      addedItem.quatity += 1;
+    } else {
+      newCart.push({ products: products, quatity: 1 });
+    }
 
-    newCart.push({product:products,quatity:1});
-    this.setState({cart:newCart});
+    this.setState({ cart: newCart });
   };
 
   render() {
@@ -44,9 +49,7 @@ export default class App extends Component {
     return (
       <div>
         <Container>
-          <Navi 
-          cart={this.state.cart}
-          />
+          <Navi cart={this.state.cart} />
 
           <Row>
             <Col xs="4">

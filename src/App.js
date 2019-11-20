@@ -26,7 +26,12 @@ export default class App extends Component {
   componentDidMount() {
     this.getProducts();
   }
-  addToCart = product => {};
+  addToCart = (products) => {
+    let newCart=this.state.cart;
+
+    newCart.push({product:products,quatity:1});
+    this.setState({cart:newCart});
+  };
 
   render() {
     let productInfo = {
@@ -39,7 +44,9 @@ export default class App extends Component {
     return (
       <div>
         <Container>
-          <Navi />
+          <Navi 
+          cart={this.state.cart}
+          />
 
           <Row>
             <Col xs="4">
@@ -54,6 +61,7 @@ export default class App extends Component {
                 productsList={this.state.products}
                 info={productInfo}
                 currentCategory={this.state.currentCategory}
+                addToCart={this.addToCart}
               />
             </Col>
           </Row>
